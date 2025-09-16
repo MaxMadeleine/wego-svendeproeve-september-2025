@@ -43,6 +43,14 @@ export const getRecordsByUserId = async (req: Request, res: Response) => {
         reviewerId: true,
         numStars: true,
         comment: true,
+        createdAt: true,
+        reviewer: {
+          select: {
+            firstname: true,
+            lastname: true,
+            imageUrl: true,
+          },
+        },
       },
 
     });
