@@ -8,12 +8,15 @@ export const getRecords = async (req: Request, res: Response) => {
     const data = await prisma.review.findMany({
       where: {
         reviewerId: Number(reviewerId),
-      }
+      },
+      include: {
+        reviewer: { select: { firstname: true, lastname: true, imageUrl: true } },
+      },
     });
 
     res.json(data);
   } catch (error) {
-    console.error(error);
+    console.error('Error in getRecords (reviewController):', error);
     res.status(500).json({ error: 'Failed to fetch trips' });
   }
 };

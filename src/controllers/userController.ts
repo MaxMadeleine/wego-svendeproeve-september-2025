@@ -59,7 +59,7 @@ export const createRecord = async (req: Request, res: Response) => {
         description,
         imageUrl,
         refreshToken,
-        isActive: Boolean(isActive),
+        isActive: true,
       },
     });
     res.status(201).json(user);
@@ -81,7 +81,7 @@ export const updateRecord = async (req: Request, res: Response) => {
       description,
       imageUrl,
       refreshToken,
-      isActive: Boolean(isActive),
+      isActive: true, // active er altid true
     };
 
     // Hash password only if provided

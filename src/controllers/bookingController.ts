@@ -29,21 +29,33 @@ export const getRecord = async (req: Request, res: Response) => {
 
 export const getRecordsByUserId = async (req: Request, res: Response) => {
   const userId = req.user?.id
+
+  if (!userId) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
   try {
     const data = await prisma.booking.findMany({
       where: {
         userId: userId,
       },
-      select: {
-        tripId: true,
-        comment: true
-      }
+      include: {
+        trip: {
+          include: {
+            user: { select: { firstname: true, lastname: true, imageUrl: true, } }, 
+          },
+        },
+        user: { select: { firstname: true, lastname: true } },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
 
     });
 
     res.json(data);
   } catch (error) {
-    console.error(error);
+    console.error('Error in getRecordsByUserId:', error);
     res.status(500).json({ error: 'Failed to fetch trips' });
   }
 };
