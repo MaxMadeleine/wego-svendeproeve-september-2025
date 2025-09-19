@@ -12,7 +12,7 @@ import { slideRoutes } from './routes/slideRoutes';
 import { contentRoutes } from './routes/contentRoutes';
 
 dotenv.config();
-const port = process.env.SERVERPORT || 3000
+const port = process.env.PORT || process.env.SERVERPORT || 3000
 
 const app = express();
 
