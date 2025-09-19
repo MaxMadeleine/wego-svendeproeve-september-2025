@@ -1,6 +1,3 @@
-ARG DATABASE_URL
-ENV DATABASE_URL=$DATABASE_URL
-
 # Use a Node.js base image
 FROM node:22-alpine
 
