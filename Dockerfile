@@ -1,3 +1,5 @@
+ARG DATABASE_URL
+
 # Use a Node.js base image
 FROM node:22-alpine
 
@@ -17,15 +19,16 @@ RUN npm install
 # Copy the rest of your application code
 COPY . .
 
+# Expose the port your app runs on
+EXPOSE 3000
+
+ENV DATABASE_URL=${DATABASE_URL}
 # Run Prisma migrations and seed the database
 RUN npx prisma migrate deploy
 RUN npm run seed
 
 # Build the TypeScript application
 RUN npm run build
-
-# Expose the port your app runs on
-EXPOSE 3000
 
 # Command to run the application
 CMD ["npm", "start"]
