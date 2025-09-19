@@ -1,12 +1,8 @@
-ARG DATABASE_URL
-
 # Use a Node.js base image
 FROM node:22-alpine
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
-
-ENV DATABASE_URL=$DATABASE_URL
 
 # Copy package.json and package-lock.json first to leverage Docker cache
 COPY package*.json ./
@@ -17,6 +13,9 @@ COPY prisma ./prisma
 
 # Install dependencies, which will run `prisma generate`
 RUN npm install
+
+# Copy the secret .env file from Render's secret store
+COPY /etc/secrets/.env ./.env
 
 # Copy the rest of your application code
 COPY . .

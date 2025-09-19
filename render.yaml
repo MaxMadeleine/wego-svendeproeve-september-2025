@@ -17,6 +17,3 @@ services:
         value: myprivaterefreshkey
       - key: TOKEN_REFRESH_EXPIRATION_SECS
         value: "86400"
-    buildArgs:
-      - key: DATABASE_URL
-        value: ${DATABASE_URL}
