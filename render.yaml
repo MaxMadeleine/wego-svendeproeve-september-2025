@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: wego-backend # Replace with your actual service name on Render
+    env: docker
+    dockerfilePath: Dockerfile
+    buildCommand: 'npm install'
+    startCommand: 'npm run start' # Or whatever your start command is
+    envVars:
+      - key: CORS_ORIGIN
+        value: https://wego-eight.vercel.app
+      - key: DATABASE_URL
+        value: ${DATABASE_URL} # This will be replaced by Render's environment variable
+      - key: TOKEN_ACCESS_KEY
+        value: myprivatekey
+      - key: TOKEN_ACCESS_EXPIRATION_SECS
+        value: "3600"
+      - key: TOKEN_REFRESH_KEY
+        value: myprivaterefreshkey
+      - key: TOKEN_REFRESH_EXPIRATION_SECS
+        value: "86400"
+    buildArgs:
+      - key: DATABASE_URL
+        value: ${DATABASE_URL}
