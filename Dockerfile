@@ -1,3 +1,5 @@
+ARG DATABASE_URL
+
 # Use a Node.js base image
 FROM node:22-alpine
 
@@ -19,6 +21,7 @@ COPY . .
 
 # Run Prisma migrations and seed the database
 # Make sure to set your DATABASE_URL as an environment variable in Render
+ENV DATABASE_URL=${DATABASE_URL}
 RUN npx prisma migrate deploy
 RUN npm run seed
 
