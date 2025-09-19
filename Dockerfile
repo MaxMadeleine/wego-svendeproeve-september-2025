@@ -14,18 +14,11 @@ COPY prisma ./prisma
 # Install dependencies, which will run `prisma generate`
 RUN npm install
 
-# Copy the secret .env file from Render's secret store
-COPY /etc/secrets/.env ./.env
-
 # Copy the rest of your application code
 COPY . .
 
 # Expose the port your app runs on
 EXPOSE 3000
-
-# Run Prisma migrations and seed the database
-RUN npx prisma migrate deploy
-RUN npm run seed
 
 # Build the TypeScript application
 RUN npm run build

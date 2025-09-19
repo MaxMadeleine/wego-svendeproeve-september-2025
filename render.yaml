@@ -3,7 +3,7 @@ services:
     name: wego-backend # Replace with your actual service name on Render
     env: docker
     dockerfilePath: Dockerfile
-    startCommand: 'npm run start' # Or whatever your start command is
+    startCommand: 'npx prisma migrate deploy && npm run seed && npm run start' # Run migrations, seed, then start the app
     envVars:
       - key: CORS_ORIGIN
         value: https://wego-eight.vercel.app
