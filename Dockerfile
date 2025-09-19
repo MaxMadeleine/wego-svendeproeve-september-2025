@@ -1,4 +1,5 @@
 ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
 
 # Use a Node.js base image
 FROM node:22-alpine
@@ -22,8 +23,11 @@ COPY . .
 # Expose the port your app runs on
 EXPOSE 3000
 
+# Create .env file with DATABASE_URL for Prisma during build
+RUN echo "DATABASE_URL=${DATABASE_URL}" > .env
+
 # Run Prisma migrations and seed the database
-RUN DATABASE_URL=${DATABASE_URL} npx prisma migrate deploy
+RUN npx prisma migrate deploy
 RUN npm run seed
 
 # Build the TypeScript application
