@@ -22,6 +22,7 @@ COPY . .
 # Run Prisma migrations and seed the database
 # Make sure to set your DATABASE_URL as an environment variable in Render
 ENV DATABASE_URL=${DATABASE_URL}
+RUN echo "DATABASE_URL before migrate deploy: $DATABASE_URL"
 RUN npx prisma migrate deploy
 RUN npm run seed
 
