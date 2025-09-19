@@ -12,6 +12,7 @@ import { slideRoutes } from './routes/slideRoutes';
 import { contentRoutes } from './routes/contentRoutes';
 
 dotenv.config();
+console.log("Starting server...");
 const port = process.env.PORT || process.env.SERVERPORT || 3000
 
 const app = express();
