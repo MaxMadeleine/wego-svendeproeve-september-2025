@@ -31,6 +31,6 @@ app.use('/api/bagsizes', bagSizeRoutes);
 app.use('/api/slides', slideRoutes);
 app.use('/api/content', contentRoutes);
 
-app.listen(port, () => {
+app.listen(Number(port), '0.0.0.0', () => {
   console.log(`Server running on http://localhost:${port}`);
 });
