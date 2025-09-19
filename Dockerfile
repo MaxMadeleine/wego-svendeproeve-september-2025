@@ -4,10 +4,14 @@ FROM node:22-alpine
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json first to leverage Docker cache
 COPY package*.json ./
 
-# Install dependencies
+# Copy Prisma schema and migrations needed for `prisma generate` during npm install
+# and later for `migrate deploy` and `seed`
+COPY prisma ./prisma
+
+# Install dependencies, which will run `prisma generate`
 RUN npm install
 
 # Copy the rest of your application code
