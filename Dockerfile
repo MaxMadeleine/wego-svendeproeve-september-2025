@@ -17,11 +17,14 @@ RUN npm install
 # Copy the rest of your application code
 COPY . .
 
-# Expose the port your app runs on
-EXPOSE 3000
-
 # Build the TypeScript application
 RUN npm run build
+
+# Debug: List contents of dist directory
+RUN ls -l dist
+
+# Expose the port your app runs on
+EXPOSE 3000
 
 # Command to run the application
 CMD ["npm", "start"]
