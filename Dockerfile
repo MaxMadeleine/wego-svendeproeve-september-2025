@@ -20,8 +20,5 @@ COPY . .
 # Build the TypeScript application
 RUN npm run build
 
-# Debug: List contents of dist directory
-RUN ls -l dist
-
 # Expose the port your app runs on
 EXPOSE 3000
