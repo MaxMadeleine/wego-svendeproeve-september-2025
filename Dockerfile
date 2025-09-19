@@ -22,9 +22,8 @@ COPY . .
 # Expose the port your app runs on
 EXPOSE 3000
 
-ENV DATABASE_URL=${DATABASE_URL}
 # Run Prisma migrations and seed the database
-RUN npx prisma migrate deploy
+RUN DATABASE_URL=${DATABASE_URL} npx prisma migrate deploy
 RUN npm run seed
 
 # Build the TypeScript application
