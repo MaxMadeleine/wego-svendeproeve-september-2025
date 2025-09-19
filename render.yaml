@@ -3,7 +3,7 @@ services:
     name: wego-backend # Replace with your actual service name on Render
     env: docker
     dockerfilePath: Dockerfile
-    buildCommand: 'docker build --build-arg DATABASE_URL=${DATABASE_URL} . && npm install'
+    buildCommand: 'docker build --build-arg DATABASE_URL=${DATABASE_URL} .'
     startCommand: 'npm run start' # Or whatever your start command is
     envVars:
       - key: CORS_ORIGIN

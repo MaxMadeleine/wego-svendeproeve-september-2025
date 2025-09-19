@@ -20,6 +20,9 @@ COPY . .
 # Expose the port your app runs on
 EXPOSE 3000
 
+# Debug: Echo DATABASE_URL to verify build argument
+RUN echo "Debug: DATABASE_URL build arg is: ${DATABASE_URL}"
+
 # Create .env file with DATABASE_URL for Prisma during build
 RUN echo "DATABASE_URL=${DATABASE_URL}" > .env
 
